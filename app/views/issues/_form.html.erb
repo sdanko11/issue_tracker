@@ -24,18 +24,19 @@
     <%= f.check_box :is_reproducible, checked: true, class: 'reproducible' %>
   </div>
   <div class="field">
-  <%= f.label :category %><br>
-  <%= f.select :category, Issue.categories, include_blank: true %>
-</div>
-<div class="field">
-  <%= f.label :severity %><br>
+    <%= f.label :severity %><br>
 
-  <%-# Loop through each string in the array -%>
-  <%- Issue.severities.each do |severity| -%>
+    <%-# Loop through each string in the array -%>
+    <%- Issue.severities.each do |severity| -%>
     <%= f.radio_button :severity, severity %>
     <%= f.label :severity, severity, value: severity %>
   <%- end -%>
-</div>
+  </div>
+  <div class="field">
+    <%= f.label :category_id %><br>
+    <%= f.collection_select :category_id, Category.all, :id, :name,
+    include_blank: true %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
